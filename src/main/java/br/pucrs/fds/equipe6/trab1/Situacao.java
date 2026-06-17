@@ -4,7 +4,8 @@ public enum Situacao {
     DISPONIVEL("disponivel"),
     CONTRATADO("contratado"),
     OBSOLETO("obsoleto"),
-    REMOVIDO("removido");
+    REMOVIDO("removido"),
+    BLOQUEADO("bloqueado"); 
 
     private String nome;
 
