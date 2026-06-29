@@ -13,7 +13,8 @@ public class Contrato {
     private Cliente cliente;
     private Jogo jogo;
     private List<Uso> usos;
-    private boolean cancelado = false; // novo atributo ! para cancelar contratos (endpoint 10) 
+    private boolean cancelado = false; // novo atributo ! para cancelar contratos (endpoint 10)
+    private FormaPagamento formaPagamento; // novo: TF exige forma de pagamento no contrato
 
 
     public Contrato(int id, Date data, int periodo, Cliente cliente, Jogo jogo, Uso uso) {
@@ -26,8 +27,8 @@ public class Contrato {
         usos = new ArrayList<Uso>();
         usos.add(uso);
     }
-    
-    //construtor pro metodo da classe contratos 
+
+    //construtor pro metodo da classe contratos
     public Contrato(int id, Date data, int periodo, Cliente cliente, Jogo jogo) {
     this.id = id;
     this.data = data;
@@ -36,6 +37,18 @@ public class Contrato {
     this.jogo = jogo;
     this.usos = new ArrayList<>();
     this.cancelado = false;
+    }
+
+    // novo: construtor usado pelo endpoint 6 do TF, já recebendo forma de pagamento
+    public Contrato(int id, Date data, int periodo, Cliente cliente, Jogo jogo, FormaPagamento formaPagamento) {
+        this.id = id;
+        this.data = data;
+        this.periodo = periodo;
+        this.cliente = cliente;
+        this.jogo = jogo;
+        this.formaPagamento = formaPagamento;
+        this.usos = new ArrayList<>();
+        this.cancelado = false;
     }
 
     public Cliente getCliente(){
@@ -84,6 +97,15 @@ public class Contrato {
 
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
+    }
+
+    // novo — getter/setter para forma de pagamento
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     // Consulta a data final do contrato data + periodo
