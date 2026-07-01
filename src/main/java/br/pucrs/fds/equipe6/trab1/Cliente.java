@@ -2,68 +2,42 @@ package br.pucrs.fds.equipe6.trab1;
 
 import java.util.Date;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Cliente {
+    private long cod; // novo — identificador numérico do cliente
     private String nome;
     private String CPF;
     private String email;
-    private Date data;
-
+    private Date nascimento; // renomeado de "data" para "nascimento" conforme diagrama TF
     private String password;
-
     private List<Contrato> contratos;
 
-    public Cliente(String nome, String CPF, String email, Date data, String password) {
+    public Cliente(long cod, String nome, String CPF, String email, Date nascimento, String password) {
+        this.cod = cod;
         this.nome = nome;
         this.CPF = CPF;
         this.email = email;
-        this.data = data;
+        this.nascimento = nascimento;
         this.password = password;
     }
 
-    public String getNome() {
-        return this.nome;
-    }
+    public long getCod() { return cod; }
+    public void setCod(long cod) { this.cod = cod; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public String getNome() { return this.nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public String getCPF() {
-        return this.CPF;
-    }
+    public String getCPF() { return this.CPF; }
+    public void setCPF(String CPF) { this.CPF = CPF; }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
+    public String getEmail() { return this.email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public Date getData() {
-        return this.data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
+    public Date getNascimento() { return this.nascimento; }
+    public void setNascimento(Date nascimento) { this.nascimento = nascimento; }
 
     @JsonIgnore
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
+    public String getPassword() { return this.password; }
+    public void setPassword(String password) { this.password = password; }
 }
