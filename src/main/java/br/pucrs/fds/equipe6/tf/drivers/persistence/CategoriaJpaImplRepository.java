@@ -1,13 +1,14 @@
 package br.pucrs.fds.equipe6.tf.drivers.persistence;
 
-import br.pucrs.fds.equipe6.tf.domain.entity.Categoria;
-import br.pucrs.fds.equipe6.tf.domain.repository.ICategoriaRepository;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import br.pucrs.fds.equipe6.tf.domain.entity.Categoria;
+import br.pucrs.fds.equipe6.tf.domain.repository.ICategoriaRepository;
 
 @Repository
 @Primary
