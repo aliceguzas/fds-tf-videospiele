@@ -1,4 +1,4 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import br.pucrs.fds.equipe6.tf.drivers.repository.CategoriaRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.CategoriaRepository;
 
 @Service
-public class UploadCategoriasService {
+public class UploadCategoriasUseCase {
 
     private final CategoriaRepository categoriaRepository;
 
-    public UploadCategoriasService(CategoriaRepository categoriaRepository) {
+    public UploadCategoriasUseCase(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
     }
 

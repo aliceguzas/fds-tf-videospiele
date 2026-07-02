@@ -1,4 +1,4 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -7,13 +7,13 @@ import br.pucrs.fds.equipe6.tf.domain.entity.Moeda;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.pucrs.fds.equipe6.tf.drivers.repository.MoedaRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.MoedaRepository;
 
 @Service
-public class UploadMoedasService {
+public class UploadMoedasUseCase {
     private final MoedaRepository moedaRepository;
 
-    public UploadMoedasService(MoedaRepository moedaRepository) {
+    public UploadMoedasUseCase(MoedaRepository moedaRepository) {
         this.moedaRepository = moedaRepository;
     }
 

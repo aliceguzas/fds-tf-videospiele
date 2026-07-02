@@ -1,4 +1,4 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import br.pucrs.fds.equipe6.tf.domain.entity.Cliente;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 
 
-import br.pucrs.fds.equipe6.tf.drivers.repository.ClienteRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.ClienteRepository;
 
 @Service
-public class UploadClientesService {
+public class UploadClientesUseCase {
 
     private final ClienteRepository clienteRepository;
 
-    public UploadClientesService(ClienteRepository clienteRepository) {
+    public UploadClientesUseCase(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 

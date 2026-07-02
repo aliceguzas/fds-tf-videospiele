@@ -1,4 +1,4 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import br.pucrs.fds.equipe6.tf.drivers.repository.CategoriaRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.JogoRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.MoedaRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.CategoriaRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.JogoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.MoedaRepository;
 
 @Service
-public class UploadJogosService {
+public class UploadJogosUseCase {
 
     private final JogoRepository jogoRepository;
     private final CategoriaRepository categoriaRepository;
     private final MoedaRepository moedaRepository;
 
-    public UploadJogosService(JogoRepository jogoRepository,
+    public UploadJogosUseCase(JogoRepository jogoRepository,
                               CategoriaRepository categoriaRepository,
                               MoedaRepository moedaRepository) {
         this.jogoRepository = jogoRepository;

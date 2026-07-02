@@ -1,4 +1,4 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -8,14 +8,14 @@ import br.pucrs.fds.equipe6.tf.domain.entity.PIX;
 import br.pucrs.fds.equipe6.tf.domain.entity.FormaPagamento;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import br.pucrs.fds.equipe6.tf.drivers.repository.FormaPagamentoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.FormaPagamentoRepository;
 
 @Service
-public class UploadFormasPagamentoService {
+public class UploadFormasPagamentoUseCase {
 
     private final FormaPagamentoRepository formaPagamentoRepository;
 
-    public UploadFormasPagamentoService(FormaPagamentoRepository formaPagamentoRepository) {
+    public UploadFormasPagamentoUseCase(FormaPagamentoRepository formaPagamentoRepository) {
         this.formaPagamentoRepository = formaPagamentoRepository;
     }
 

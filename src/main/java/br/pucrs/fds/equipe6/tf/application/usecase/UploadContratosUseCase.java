@@ -1,4 +1,4 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,23 +12,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import br.pucrs.fds.equipe6.tf.drivers.repository.ClienteRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.ContratoRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.FormaPagamentoRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.JogoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.ClienteRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.ContratoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.FormaPagamentoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.JogoRepository;
 
 @Service
-public class UploadContratosService {
+public class UploadContratosUseCase {
 
     private final ContratoRepository contratoRepository;
     private final ClienteRepository clienteRepository;
     private final JogoRepository jogoRepository;
     private final FormaPagamentoRepository formaPagamentoRepository;
 
-    public UploadContratosService(ContratoRepository contratoRepository,
-                                 ClienteRepository clienteRepository,
-                                 JogoRepository jogoRepository,
-                                 FormaPagamentoRepository formaPagamentoRepository) {
+    public UploadContratosUseCase(ContratoRepository contratoRepository,
+                                  ClienteRepository clienteRepository,
+                                  JogoRepository jogoRepository,
+                                  FormaPagamentoRepository formaPagamentoRepository) {
         this.contratoRepository = contratoRepository;
         this.clienteRepository = clienteRepository;
         this.jogoRepository = jogoRepository;

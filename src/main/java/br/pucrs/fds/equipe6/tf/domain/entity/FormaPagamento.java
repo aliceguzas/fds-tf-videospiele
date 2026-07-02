@@ -8,8 +8,7 @@ import jakarta.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class FormaPagamento {
-
+public class FormaPagamento {
     @Id
     private int num;
     private int diaVencimento;

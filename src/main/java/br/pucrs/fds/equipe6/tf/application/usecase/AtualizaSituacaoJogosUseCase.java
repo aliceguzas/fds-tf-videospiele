@@ -4,19 +4,19 @@ package br.pucrs.fds.equipe6.tf.application.usecase;
 import br.pucrs.fds.equipe6.tf.domain.entity.Contrato;
 import br.pucrs.fds.equipe6.tf.domain.entity.Jogo;
 import br.pucrs.fds.equipe6.tf.domain.entity.Situacao;
-import br.pucrs.fds.equipe6.tf.drivers.repository.ContratoRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.JogoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.ContratoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.JogoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class AtualizarSituacaoJogosService {
+public class AtualizaSituacaoJogosUseCase {
 
     private final JogoRepository jogoRepository;
     private final ContratoRepository contratoRepository;
 
-    public AtualizarSituacaoJogosService(JogoRepository jogoRepository, ContratoRepository contratoRepository) {
+    public AtualizaSituacaoJogosUseCase(JogoRepository jogoRepository, ContratoRepository contratoRepository) {
         this.jogoRepository = jogoRepository;
         this.contratoRepository = contratoRepository;
     }

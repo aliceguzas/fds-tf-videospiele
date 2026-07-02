@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 public class Cliente {
 
     @Id
-    private long cod; // novo — identificador numérico do cliente
+    private long cod; // id para o cliente
     private String nome;
 
     @Column(unique = true)
@@ -18,7 +18,7 @@ public class Cliente {
     private String email;
 
     @Temporal(TemporalType.DATE)
-    private Date nascimento; // renomeado de "data" para "nascimento" conforme diagrama TF
+    private Date nascimento;
     private String password;
 
     public Cliente(){

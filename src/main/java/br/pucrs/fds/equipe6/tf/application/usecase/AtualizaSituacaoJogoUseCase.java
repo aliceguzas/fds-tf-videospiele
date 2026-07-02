@@ -3,7 +3,7 @@ package br.pucrs.fds.equipe6.tf.application.usecase;
 
 import br.pucrs.fds.equipe6.tf.domain.entity.Jogo;
 import br.pucrs.fds.equipe6.tf.domain.entity.Situacao;
-import br.pucrs.fds.equipe6.tf.drivers.repository.JogoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.JogoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -2,65 +2,64 @@ package br.pucrs.fds.equipe6.tf.adapters;
 
 import java.util.Date;
 import java.util.List;
-
 import br.pucrs.fds.equipe6.tf.application.dto.ContratoRespostaDTO;
 import br.pucrs.fds.equipe6.tf.application.dto.CriaContratoDTO;
 import br.pucrs.fds.equipe6.tf.application.dto.UsoDTO;
 import br.pucrs.fds.equipe6.tf.application.usecase.*;
 import br.pucrs.fds.equipe6.tf.domain.entity.*;
-import br.pucrs.fds.equipe6.tf.domain.service.*;
-import br.pucrs.fds.equipe6.tf.drivers.repository.*;
+import br.pucrs.fds.equipe6.tf.domain.repository.*;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/acmespiele")
 public class Controller {
 
     // REPOSITORIES
-    private final ClienteRepository clienteRepository;
-    private final JogoRepository jogoRepository;
-    private final ContratoRepository contratoRepository;
-    private final CategoriaRepository categoriaRepository;
-    private final FormaPagamentoRepository formaPagamentoRepository;
+    private final IClienteRepository clienteRepository;
+    private final IJogoRepository jogoRepository;
+    private final IContratoRepository contratoRepository;
+    private final ICategoriaRepository categoriaRepository;
+    private final IFormaPagamentoRepository formaPagamentoRepository;
 
     // USECASES
     private final CalculaValorContratoUseCase calculaValorContratoUseCase;
     private final ConsultarJogosPorSituacaoUseCase consultarJogosPorSituacaoUseCase;
     private final AtualizaSituacaoJogoUseCase atualizarSituacaoJogoUseCase;
     private final ConsultaCobrancaClienteUseCase consultaCobrancaClienteUseCase;
-    private final AtualizarSituacaoJogosService atualizarSituacaoJogosService;
+    private final AtualizaSituacaoJogosUseCase atualizaSituacaoJogosUseCase;
 
     // UPLOADS
-    private final UploadClientesService uploadClientesService;
-    private final UploadJogosService uploadJogosService;
-    private final UploadContratosService uploadContratosService;
-    private final UploadMoedasService uploadMoedasService;
-    private final UploadUsosService uploadUsosService;
-    private final UploadFormasPagamentoService uploadFormasPagamentoService;
-    private final UploadCategoriasService uploadCategoriasService;
+    private final UploadClientesUseCase uploadClientesUseCase;
+    private final UploadJogosUseCase uploadJogosUseCase;
+    private final UploadContratosUseCase uploadContratosUseCase;
+    private final UploadMoedasUseCase uploadMoedasUseCase;
+    private final UploadUsosUseCase uploadUsosUseCase;
+    private final UploadFormasPagamentoUseCase uploadFormasPagamentoUseCase;
+    private final UploadCategoriasUseCase uploadCategoriasUseCase;
 
+    @Autowired
     public Controller(
-        ClienteRepository clienteRepository,
-        JogoRepository jogoRepository,
-        ContratoRepository contratoRepository,
-        CategoriaRepository categoriaRepository,
-        FormaPagamentoRepository formaPagamentoRepository,
+        IClienteRepository clienteRepository,
+        IJogoRepository jogoRepository,
+        IContratoRepository contratoRepository,
+        ICategoriaRepository categoriaRepository,
+        IFormaPagamentoRepository formaPagamentoRepository,
         ConsultarJogosPorSituacaoUseCase consultarJogosPorSituacaoUseCase,
         AtualizaSituacaoJogoUseCase atualizarSituacaoJogoUseCase,
         CalculaValorContratoUseCase calculaValorContratoUseCase,
         ConsultaCobrancaClienteUseCase consultaCobrancaClienteUseCase,
-        AtualizarSituacaoJogosService atualizarSituacaoJogosService,
-        UploadClientesService uploadClientesService,
-        UploadJogosService uploadJogosService,
-        UploadContratosService uploadContratosService,
-        UploadMoedasService uploadMoedasService,
-        UploadUsosService uploadUsosService,
-        UploadFormasPagamentoService uploadFormasPagamentoService,
-        UploadCategoriasService uploadCategoriasService
+        AtualizaSituacaoJogosUseCase atualizaSituacaoJogosUseCase,
+        UploadClientesUseCase uploadClientesUseCase,
+        UploadJogosUseCase uploadJogosUseCase,
+        UploadContratosUseCase uploadContratosUseCase,
+        UploadMoedasUseCase uploadMoedasUseCase,
+        UploadUsosUseCase uploadUsosUseCase,
+        UploadFormasPagamentoUseCase uploadFormasPagamentoUseCase,
+        UploadCategoriasUseCase uploadCategoriasUseCase
     ) {
         this.clienteRepository = clienteRepository;
         this.jogoRepository = jogoRepository;
@@ -71,50 +70,50 @@ public class Controller {
         this.atualizarSituacaoJogoUseCase = atualizarSituacaoJogoUseCase;
         this.calculaValorContratoUseCase = calculaValorContratoUseCase;
         this.consultaCobrancaClienteUseCase = consultaCobrancaClienteUseCase;
-        this.atualizarSituacaoJogosService = atualizarSituacaoJogosService;
-        this.uploadClientesService = uploadClientesService;
-        this.uploadJogosService = uploadJogosService;
-        this.uploadContratosService = uploadContratosService;
-        this.uploadMoedasService = uploadMoedasService;
-        this.uploadUsosService = uploadUsosService;
-        this.uploadFormasPagamentoService = uploadFormasPagamentoService;
-        this.uploadCategoriasService = uploadCategoriasService;
+        this.atualizaSituacaoJogosUseCase = atualizaSituacaoJogosUseCase;
+        this.uploadClientesUseCase = uploadClientesUseCase;
+        this.uploadJogosUseCase = uploadJogosUseCase;
+        this.uploadContratosUseCase = uploadContratosUseCase;
+        this.uploadMoedasUseCase = uploadMoedasUseCase;
+        this.uploadUsosUseCase = uploadUsosUseCase;
+        this.uploadFormasPagamentoUseCase = uploadFormasPagamentoUseCase;
+        this.uploadCategoriasUseCase = uploadCategoriasUseCase;
     }
 
     // endpoint 0: Upload de arquivos CSV
     @PostMapping("/upload/clientes")
     public ResponseEntity<Boolean> uploadClientes(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadClientesService.executar(file));
+        return ResponseEntity.ok(uploadClientesUseCase.executar(file));
     }
 
     @PostMapping("/upload/jogos")
     public ResponseEntity<Boolean> uploadJogos(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadJogosService.executar(file));
+        return ResponseEntity.ok(uploadJogosUseCase.executar(file));
     }
 
     @PostMapping("/upload/contratos")
     public ResponseEntity<Boolean> uploadContratos(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadContratosService.executar(file));
+        return ResponseEntity.ok(uploadContratosUseCase.executar(file));
     }
 
     @PostMapping("/upload/moedas")
     public ResponseEntity<Boolean> uploadMoedas(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadMoedasService.executar(file));
+        return ResponseEntity.ok(uploadMoedasUseCase.executar(file));
     }
 
     @PostMapping("/upload/usos")
     public ResponseEntity<Boolean> uploadUsos(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadUsosService.executar(file));
+        return ResponseEntity.ok(uploadUsosUseCase.executar(file));
     }
 
     @PostMapping("/upload/formaspagamento")
     public ResponseEntity<Boolean> uploadFormasPagamento(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadFormasPagamentoService.executar(file));
+        return ResponseEntity.ok(uploadFormasPagamentoUseCase.executar(file));
     }
 
     @PostMapping("/upload/categorias")
     public ResponseEntity<Boolean> uploadCategorias(@RequestParam("file") MultipartFile file) {
-        return ResponseEntity.ok(uploadCategoriasService.executar(file));
+        return ResponseEntity.ok(uploadCategoriasUseCase.executar(file));
     }
 
     // endpoint 1: Consultar todos os clientes
@@ -224,7 +223,7 @@ public class Controller {
         if (contrato == null) return false;
         contrato.cancelar();
         contratoRepository.save(contrato);
-        atualizarSituacaoJogosService.executar();
+        atualizaSituacaoJogosUseCase.executar();
         return true;
     }
 }

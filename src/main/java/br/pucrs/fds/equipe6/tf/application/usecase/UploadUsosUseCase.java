@@ -1,10 +1,10 @@
-package br.pucrs.fds.equipe6.tf.domain.service;
+package br.pucrs.fds.equipe6.tf.application.usecase;
 
 
 import br.pucrs.fds.equipe6.tf.domain.entity.Contrato;
 import br.pucrs.fds.equipe6.tf.domain.entity.Uso;
-import br.pucrs.fds.equipe6.tf.drivers.repository.UsoRepository;
-import br.pucrs.fds.equipe6.tf.drivers.repository.ContratoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.UsoRepository;
+import br.pucrs.fds.equipe6.tf.domain.repository.ContratoRepository;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,12 +14,12 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 
 @Service
-public class UploadUsosService {
+public class UploadUsosUseCase {
 
     private final UsoRepository usoRepository;
     private final ContratoRepository contratoRepository;
 
-    public UploadUsosService(UsoRepository usoRepository,
+    public UploadUsosUseCase(UsoRepository usoRepository,
                              ContratoRepository contratoRepository) {
         this.usoRepository = usoRepository;
         this.contratoRepository = contratoRepository;
