@@ -94,12 +94,16 @@ public class Uso {
         this.contrato = contrato;
     }
     public long getDuracaoMinutos() {
-        LocalDate dataIni = dataInicio.toInstant()
+        // converte java.sql.Date para java.util.Date antes de usar toInstant
+        java.util.Date dIni = new java.util.Date(dataInicio.getTime());
+        java.util.Date dFim = new java.util.Date(dataFim.getTime());
+
+        LocalDate dataIni = dIni.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
         LocalTime horaIni = LocalTime.of(horarioInicio % 24, 0);
 
-        LocalDate dataF = dataFim.toInstant()
+        LocalDate dataF = dFim.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
         LocalTime horaFim = LocalTime.of(horarioFim % 24, 0);

@@ -55,7 +55,7 @@ public class Contratos {
         if (cliente == null || jogo == null || formaPagamento == null) return false;
 
         // no tf jogo é exclusivo, só pode ter 1 contrato ativo por vez ent modifiquei 
-        if (jogo.estaContratado(this)) return false;
+        if (jogo.estaContratado(contratos)) return false;
 
         Contrato novo = new Contrato(contratoDTO.getId(), contratoDTO.getData(), contratoDTO.getPeriodo(), cliente, jogo, formaPagamento);
         contratos.add(novo);

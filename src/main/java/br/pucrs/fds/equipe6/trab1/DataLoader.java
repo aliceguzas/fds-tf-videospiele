@@ -10,7 +10,7 @@ import java.util.Date;
  * PADRÃO: Layers camada de infraestrutura.
  * Popula o banco H2 na inicialização do sistema com dados iniciais.
  */
-@Component
+//@Component
 public class DataLoader implements CommandLineRunner {
 
     private final ClienteRepository clienteRepo;

@@ -34,21 +34,22 @@ public class Jogos {
     }
 
     public void atualizarSituacaoJogos(Contratos contratos){
-
         for(Jogo jogo : jogos) {
-
-            // n sobrescreve se foi alterado manualmente
             if (jogo.isSituacaoManual()) continue;
 
-            if(jogo.estaRemovido(contratos)) {
+            // passa a lista interna, não o objeto Contratos
+            List<Contrato> lista = contratos.getContratos()
+                    .stream()
+                    .filter(c -> c.getJogo().equals(jogo))
+                    .toList();
+
+            if(jogo.estaRemovido(lista)) {
                 jogo.setSituacao(Situacao.REMOVIDO);
             }
-
-            else if(jogo.estaObsoleto(contratos)) {
+            else if(jogo.estaObsoleto(lista)) {
                 jogo.setSituacao(Situacao.OBSOLETO);
             }
-
-            else if(jogo.estaContratado(contratos)) {
+            else if(jogo.estaContratado(lista)) {
                 jogo.setSituacao(Situacao.CONTRATADO);
             }
             else {

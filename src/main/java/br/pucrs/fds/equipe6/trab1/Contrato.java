@@ -29,7 +29,7 @@ public class Contrato {
     @JoinColumn(name = "forma_pagamento_num")
     private FormaPagamento formaPagamento;
 
-    @OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Uso> usos = new ArrayList<>();
 
 
