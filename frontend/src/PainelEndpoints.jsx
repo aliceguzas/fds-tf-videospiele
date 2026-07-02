@@ -57,7 +57,7 @@ export default function PainelEndpoints() {
       setOutput(typeof data === "string" ? data : JSON.stringify(data, null, 2));
     } catch (err) {
       setStatusError(true);
-      setStatus("❌ Falha ao conectar. Backend está rodando na porta 8081?");
+      setStatus("❌ Falha ao conectar. Backend está rodando na porta 8080?");
       setOutput(String(err));
     }
   }
